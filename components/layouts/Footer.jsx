@@ -1,5 +1,5 @@
 const Footer = () => {
-  return <footer>header</footer>;
+  return <footer className="lg:px-40">header</footer>;
 };
 
 export default Footer;
