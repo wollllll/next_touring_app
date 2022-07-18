@@ -1,8 +1,8 @@
 const Header = () => {
   return (
     <>
-      <header className="shadow lg:px-40">
-        <div className="navbar bg-base-100">
+      <header className="bg-primary shadow lg:px-40">
+        <div className="navbar">
           <div className="navbar-start" />
           <div className="navbar-center">
             <a className="btn btn-ghost normal-case text-xl">峠マイスター</a>
