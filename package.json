@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write './**/*.jsx'",
-    "fix": "npm run lint && npm run format"
+    "fix": "npm run lint && npm run format",
+    "db-fresh": "npx prisma migrate reset && npx prisma db push && npx prisma db seed"
   },
   "prisma": {
     "seed": "ts-node ./prisma/seed/start.ts"

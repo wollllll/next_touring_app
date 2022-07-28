@@ -7,12 +7,9 @@ export const user = async () => {
         data: [
             {
                 name: 'test',
-                email: 'test@test'
+                email: 'test@test',
+                password: 'testtest'
             },
-            {
-                name: 'test2',
-                email: 'test2@test'
-            }
         ]
     })
 };

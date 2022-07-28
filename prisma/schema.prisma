@@ -1,16 +1,30 @@
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider             = "mysql"
-  url                  = env("DATABASE_URL")
+  provider = "mysql"
+  url = env("DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  name  String
+  id Int @id @default(autoincrement())
+  spots Spot[]
+  name String
   email String
+  password String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Spot {
+  id Int @id @default(autoincrement())
+  user   User @relation(fields: [user_id], references: [id])
+  user_id Int
+  title String
+  position Json
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
