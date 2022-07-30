@@ -23,6 +23,24 @@ export const spot = async () => {
                     }
                 ]
             },
+            {
+                user_id: 1,
+                title: 'spot2',
+                position: [
+                    {
+                        lat: 35.138996,
+                        lng: 138.902741
+                    },
+                    {
+                        lat: 35.138716,
+                        lng: 138.908805
+                    },
+                    {
+                        lat: 35.136195,
+                        lng: 138.910586
+                    }
+                ]
+            },
         ]
     })
 };

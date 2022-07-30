@@ -1,17 +1,15 @@
 import Base from "../components/layouts/Base";
 import React from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { prisma } from "../prisma";
 
-export default function Home() {
-  const mapStyles = {
-    height: "100vh",
-    width: "100%",
-  };
-
-  const defaultCenter = {
-    lat: 35.6809591,
-    lng: 139.7673068,
-  };
+/**
+ * @param spots
+ * @returns {JSX.Element}
+ * @constructor
+ */
+export default function Home({ spots }) {
+  console.log(spots);
 
   return (
     <Base>
@@ -19,11 +17,30 @@ export default function Home() {
         googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
       >
         <GoogleMap
-          mapContainerStyle={mapStyles}
+          mapContainerStyle={{
+            height: "100vh",
+            width: "100%",
+          }}
           zoom={13}
-          center={defaultCenter}
+          center={{
+            lat: 35.6809591,
+            lng: 139.7673068,
+          }}
         />
       </LoadScript>
     </Base>
   );
 }
+
+/**
+ * @returns {Promise<{props: {spots: *}}>}
+ */
+export const getServerSideProps = async () => {
+  const spots = await prisma.spot.findMany();
+
+  return {
+    props: {
+      spots,
+    },
+  };
+};
