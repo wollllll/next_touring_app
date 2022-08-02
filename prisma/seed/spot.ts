@@ -8,38 +8,30 @@ export const spot = async () => {
             {
                 user_id: 1,
                 title: 'spot1',
-                position: [
+                path: JSON.stringify([
                     {
-                        lat: 35.138996,
-                        lng: 138.902741
+                        lng: 138.902741,
+                        lat: 35.138996
                     },
                     {
-                        lat: 35.138716,
-                        lng: 138.908805
-                    },
-                    {
-                        lat: 35.136195,
-                        lng: 138.910586
+                        lng: 138.908805,
+                        lat: 35.138716
                     }
-                ]
+                ])
             },
             {
                 user_id: 1,
                 title: 'spot2',
-                position: [
+                path: JSON.stringify([
                     {
-                        lat: 35.138996,
-                        lng: 138.902741
+                        lng: 138.889670,
+                        lat: 35.139788
                     },
                     {
-                        lat: 35.138716,
-                        lng: 138.908805
-                    },
-                    {
-                        lat: 35.136195,
-                        lng: 138.910586
+                        lng: 138.889744,
+                        lat: 35.136602
                     }
-                ]
+                ])
             },
         ]
     })

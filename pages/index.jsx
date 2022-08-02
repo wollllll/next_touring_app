@@ -1,6 +1,6 @@
 import Base from "../components/layouts/Base";
-import React from "react";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import React, { useEffect, useState } from "react";
+import {GoogleMap, LoadScript, Marker, Polyline} from "@react-google-maps/api";
 import { prisma } from "../prisma";
 
 /**
@@ -9,7 +9,19 @@ import { prisma } from "../prisma";
  * @constructor
  */
 export default function Home({ spots }) {
-  console.log(spots);
+  const [currentPosition, setCurrentPosition] = useState({
+    lng: 139.7649308,
+    lat: 35.6812362,
+  });
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((success) => {
+      setCurrentPosition({
+        lng: success.coords.longitude,
+        lat: success.coords.latitude,
+      });
+    });
+  }, []);
 
   return (
     <Base>
@@ -21,12 +33,19 @@ export default function Home({ spots }) {
             height: "100vh",
             width: "100%",
           }}
-          zoom={13}
-          center={{
-            lat: 35.6809591,
-            lng: 139.7673068,
-          }}
-        />
+          zoom={15}
+          center={currentPosition}
+        >
+            {spots.map((spot) => {
+                return (
+                    <template key={spot.id}>
+                        <Polyline path={JSON.parse(spot.path)} />
+                        <Marker position={JSON.parse(spot.path).shift()}/>
+                        <Marker position={JSON.parse(spot.path).pop()}/>
+                    </template>
+                )
+            })}
+        </GoogleMap>
       </LoadScript>
     </Base>
   );
