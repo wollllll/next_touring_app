@@ -40,8 +40,8 @@ export default function Home({ spots }) {
                 return (
                     <template key={spot.id}>
                         <Polyline path={JSON.parse(spot.path)} />
-                        <Marker position={JSON.parse(spot.path).shift()}/>
-                        <Marker position={JSON.parse(spot.path).pop()}/>
+                        <Marker position={{lng: spot.start_lng, lat: spot.start_lat}}/>
+                        <Marker position={{lng: spot.end_lng, lat: spot.end_lat}}/>
                     </template>
                 )
             })}
