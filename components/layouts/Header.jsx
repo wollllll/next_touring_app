@@ -1,9 +1,19 @@
+import { useSession, signIn, signOut } from "next-auth/react"
+
 const Header = () => {
+  const { data: session } = useSession()
+  
   return (
     <>
       <header className="bg-primary shadow lg:px-40">
         <div className="navbar">
-          <div className="navbar-start" />
+          <div className="navbar-start">
+            {
+              session ?
+                  <button onClick={() => signOut()}>signOut</button> :
+                  <button onClick={() => signIn()}>Sign in</button>
+            }
+          </div>
           <div className="navbar-center">
             <a className="btn btn-ghost normal-case text-xl">峠マイスター</a>
           </div>

@@ -1,12 +1,29 @@
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
+import TwitterProvider from "next-auth/providers/twitter"
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { PrismaClient } from "@prisma/client"
+
+const prisma = new PrismaClient()
+
 export default NextAuth({
-    // Configure one or more authentication providers
+    adapter: PrismaAdapter(prisma),
     providers: [
         GithubProvider({
-            clientId: '22cf0cf9f1af701fe045',
-            clientSecret: '5bf1576d5dee4bbde51c5c8a6527ff1e861308c5',
+            clientId: process.env.GITHUB_CLIENT_ID,
+            clientSecret: process.env.GITHUB_SECRET,
         }),
-        // ...add more providers here
+        TwitterProvider({
+            clientId: process.env.TWITTER_CLIENT_ID,
+            clientSecret: process.env.TWITTER_SECRET,
+            version: "2.0",
+        })
     ],
+    callbacks: {
+        async session(session, token) {
+            session.token = token
+
+            return session;
+        },
+    },
 })

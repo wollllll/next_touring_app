@@ -6,9 +6,9 @@ export const user = async () => {
     await prisma.user.createMany({
         data: [
             {
-                name: 'test',
-                email: 'test@test',
-                password: 'testtest'
+                id: 'cl6v6cn0z0077lytwr42w1o7d',
+                name: 'たかひろ',
+                image: 'https://pbs.twimg.com/profile_images/1522950363783241729/w0dIiTlP_normal.jpg'
             },
         ]
     })

@@ -6,12 +6,12 @@ export const spot = async () => {
     await prisma.spot.createMany({
         data: [
             {
-                user_id: 1,
+                userId: 'cl6v6cn0z0077lytwr42w1o7d',
                 title: 'spot1',
-                start_lng: 138.902741,
-                start_lat: 35.138996,
-                end_lng: 138.90880,
-                end_lat: 35.138716,
+                startLng: 138.902741,
+                startLat: 35.138996,
+                endLng: 138.90880,
+                endLat: 35.138716,
                 path: JSON.stringify([
                     {
                         lng: 138.902741,
@@ -24,12 +24,12 @@ export const spot = async () => {
                 ])
             },
             {
-                user_id: 1,
+                userId: 'cl6v6cn0z0077lytwr42w1o7d',
                 title: 'spot2',
-                start_lng: 138.889670,
-                start_lat: 35.139788,
-                end_lng: 138.890221,
-                end_lat: 35.135132,
+                startLng: 138.889670,
+                startLat: 35.139788,
+                endLng: 138.890221,
+                endLat: 35.135132,
                 path: JSON.stringify([
                     {
                         lng: 138.889670,
