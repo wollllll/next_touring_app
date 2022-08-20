@@ -1,8 +1,13 @@
 import Base from "../components/layouts/Base";
 import React, { useEffect, useState } from "react";
-import {GoogleMap, LoadScript, Marker, Polyline} from "@react-google-maps/api";
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  Polyline,
+} from "@react-google-maps/api";
 import { prisma } from "../prisma";
-import 'material-icons/iconfont/material-icons.css';
+import "material-icons/iconfont/material-icons.css";
 
 /**
  * @param spots
@@ -37,15 +42,15 @@ export default function Home({ spots }) {
           zoom={15}
           center={currentPosition}
         >
-            {spots.map((spot) => {
-                return (
-                    <template key={spot.id}>
-                        <Polyline path={JSON.parse(spot.path)} />
-                        <Marker position={{lng: spot.startLng, lat: spot.startLat}}/>
-                        <Marker position={{lng: spot.endLng, lat: spot.endLat}}/>
-                    </template>
-                )
-            })}
+          {spots.map((spot) => {
+            return (
+              <template key={spot.id}>
+                <Polyline path={JSON.parse(spot.path)} />
+                <Marker position={{ lng: spot.startLng, lat: spot.startLat }} />
+                <Marker position={{ lng: spot.endLng, lat: spot.endLat }} />
+              </template>
+            );
+          })}
         </GoogleMap>
       </LoadScript>
     </Base>
