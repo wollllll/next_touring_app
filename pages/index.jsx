@@ -2,6 +2,7 @@ import Base from "../components/layouts/Base";
 import React, { useEffect, useState } from "react";
 import {GoogleMap, LoadScript, Marker, Polyline} from "@react-google-maps/api";
 import { prisma } from "../prisma";
+import 'material-icons/iconfont/material-icons.css';
 
 /**
  * @param spots
