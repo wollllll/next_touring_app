@@ -54,9 +54,12 @@ const Header = () => {
             <a className="btn btn-ghost normal-case text-xl">峠マイスター</a>
           </div>
           <div className="navbar-end">
-            <label htmlFor="add-modal" className="btn btn-ghost btn-circle">
-              <span className="material-icons">add</span>
-            </label>
+              {
+                  session &&
+                  <label htmlFor="add-modal" className="btn btn-ghost btn-circle">
+                      <span className="material-icons">add</span>
+                  </label>
+              }
             <button className="btn btn-ghost btn-circle">
               <span className="material-icons">search</span>
             </button>
@@ -67,15 +70,18 @@ const Header = () => {
       <label htmlFor="add-modal" className="modal cursor-pointer">
         <label className="modal-box relative" htmlFor="">
           <h3 className="text-lg font-bold">ルートの記録</h3>
-          {isStart ? (
-            <button onClick={stop} type="button">
-              停止する
-            </button>
-          ) : (
-            <button onClick={start} type="button">
-              記録する
-            </button>
-          )}
+            <p className="py-4">ルートの記録を開始しますか？</p>
+            <div className="modal-action">
+                {isStart ? (
+                    <button onClick={stop} type="button" className="btn">
+                        停止する
+                    </button>
+                ) : (
+                    <button onClick={start} type="button" className="btn">
+                        記録する
+                    </button>
+                )}
+            </div>
         </label>
       </label>
     </>
