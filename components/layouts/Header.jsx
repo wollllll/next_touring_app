@@ -9,7 +9,7 @@ const Header = () => {
 
   const start = () => {
     getCurrentPosition();
-    setIntervalId(setInterval(getCurrentPosition, 10000));
+    setIntervalId(setInterval(getCurrentPosition, 5000));
   };
   const getCurrentPosition = () => {
     navigator.geolocation.getCurrentPosition(
