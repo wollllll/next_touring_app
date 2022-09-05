@@ -29,6 +29,13 @@ export default function Home({ spots }) {
     });
   }, []);
 
+  const getTargetSpot = (spot) => {
+    setCurrentPosition({
+      lng: spot.startLng,
+      lat: spot.startLat
+    })
+  }
+
   return (
     <Base>
       <LoadScript
@@ -46,8 +53,8 @@ export default function Home({ spots }) {
             return (
               <template key={spot.id}>
                 <Polyline path={JSON.parse(spot.path)} />
-                <Marker position={{ lng: spot.startLng, lat: spot.startLat }} />
-                <Marker position={{ lng: spot.endLng, lat: spot.endLat }} />
+                <Marker onClick={() => getTargetSpot(spot)} position={{ lng: spot.startLng, lat: spot.startLat }} />
+                <Marker onClick={() => getTargetSpot(spot)} position={{ lng: spot.endLng, lat: spot.endLat }} />
               </template>
             );
           })}
