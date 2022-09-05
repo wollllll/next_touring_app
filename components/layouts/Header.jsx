@@ -90,7 +90,17 @@ const Header = () => {
             </label>
           )}
           <h3 className="text-lg font-bold">ルートの記録</h3>
-          <p className="py-4">ルートの記録を開始しますか？</p>
+          <p className="py-4">
+            {intervalId ? (
+              <span>
+                記録中です...
+                <br />
+                記録を停止する場合は停止するボタンを押してください。
+              </span>
+            ) : (
+              <span>ルートの記録を開始しますか？</span>
+            )}
+          </p>
           <div className="modal-action">
             {intervalId ? (
               <button onClick={stop} type="button" className="btn">
