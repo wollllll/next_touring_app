@@ -6,32 +6,31 @@ const Header = () => {
   const { data: session } = useSession();
   const [intervalId, setIntervalId] = useState(null);
   const [path, setPath] = useState([]);
+
   const start = () => {
-    setIntervalId(true);
-
-    setInterval(() => {
-      navigator.geolocation.getCurrentPosition(
-        (success) => {
-          const previousPath = path[path.length - 1];
-          const lng = success.coords.longitude;
-          const lat = success.coords.latitude;
-
-          if (previousPath) {
-            if (previousPath.lng === lng && previousPath.lat === lat) return;
-          }
-
-          console.log(previousPath);
-          path.push({ lng, lat });
-          setPath(path);
-        },
-        () => alert("errorrrrrrrrr"),
-        {
-          enableHighAccuracy: true,
-        }
-      );
-    }, 1000);
+    getCurrentPosition();
+    setIntervalId(setInterval(getCurrentPosition, 10000));
   };
+  const getCurrentPosition = () => {
+    navigator.geolocation.getCurrentPosition(
+      (success) => {
+        const previousPath = path[path.length - 1];
+        const lng = success.coords.longitude;
+        const lat = success.coords.latitude;
 
+        if (previousPath) {
+          if (previousPath.lng === lng && previousPath.lat === lat) return;
+        }
+
+        path.push({ lng, lat });
+        setPath(path);
+      },
+      () => alert("errorrrrrrrrr"),
+      {
+        enableHighAccuracy: true,
+      }
+    );
+  };
   const stop = () => {
     setIntervalId(null);
     const firstPosition = path[0];
@@ -80,8 +79,16 @@ const Header = () => {
         </div>
       </header>
       <input type="checkbox" id="add-modal" className="modal-toggle" />
-      <label htmlFor="add-modal" className="modal cursor-pointer">
-        <label className="modal-box relative" htmlFor="">
+      <div className="modal">
+        <div className="modal-box relative">
+          {!intervalId && (
+            <label
+              htmlFor="add-modal"
+              className="btn btn-sm btn-circle absolute right-2 top-2"
+            >
+              ✕
+            </label>
+          )}
           <h3 className="text-lg font-bold">ルートの記録</h3>
           <p className="py-4">ルートの記録を開始しますか？</p>
           <div className="modal-action">
@@ -95,8 +102,8 @@ const Header = () => {
               </button>
             )}
           </div>
-        </label>
-      </label>
+        </div>
+      </div>
     </>
   );
 };
