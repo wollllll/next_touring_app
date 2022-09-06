@@ -6,10 +6,11 @@ const Header = () => {
   const { data: session } = useSession();
   const [intervalId, setIntervalId] = useState(null);
   const [path, setPath] = useState([]);
+  const [isShownModal, setIsShownModal] = useState(false)
 
   const start = () => {
     getCurrentPosition();
-    setIntervalId(setInterval(getCurrentPosition, 500));
+    setIntervalId(setInterval(getCurrentPosition, 2000));
   };
   const getCurrentPosition = () => {
     navigator.geolocation.getCurrentPosition(
@@ -68,7 +69,7 @@ const Header = () => {
           </div>
           <div className="navbar-end">
             {session && (
-              <label htmlFor="add-modal" className="btn btn-ghost btn-circle">
+              <label onClick={() => setIsShownModal(true)} htmlFor="add-modal" className="btn btn-ghost btn-circle">
                 <span className="material-icons">add</span>
               </label>
             )}
@@ -78,11 +79,11 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <input type="checkbox" id="add-modal" className="modal-toggle" />
-      <div className="modal">
+      <div className={isShownModal ? 'modal modal-open' : 'modal'}>
         <div className="modal-box relative">
           {!intervalId && (
             <label
+                onClick={() => setIsShownModal(false)}
               htmlFor="add-modal"
               className="btn btn-sm btn-circle absolute right-2 top-2"
             >
